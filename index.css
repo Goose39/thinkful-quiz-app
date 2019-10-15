@@ -29,20 +29,22 @@ main p {
     padding: 25px;
 }
 
-fieldset {
-    border: 1pt solid grey;
-}
-
 button {
     color: white;
     background-color: rgb(40, 39, 41);
-}
-
-.options-list {
-    list-style-type: none;
+    margin-top: 20px;
 }
 
 fieldset {
     border: none;
 }
 
+.result {
+    background-color: green;
+    width: 150px;
+    margin: 20px auto 0 auto;
+}
+
+label {
+    display: inline-block;
+}
