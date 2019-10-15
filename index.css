@@ -1,0 +1,48 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Roboto', sans-serif;
+    width: 60%;
+}
+
+.heading {
+    margin-top: 100px;
+    height: 100px;
+    border: solid 5px black;
+}
+
+h1 {
+    font-size: 32px;
+    text-align: center;
+}
+
+main {
+    text-align: center;
+    border: solid grey 2px;
+}
+
+main p {
+    padding: 25px;
+}
+
+fieldset {
+    border: 1pt solid grey;
+}
+
+button {
+    color: white;
+    background-color: rgb(40, 39, 41);
+}
+
+.options-list {
+    list-style-type: none;
+}
+
+fieldset {
+    border: none;
+}
+
