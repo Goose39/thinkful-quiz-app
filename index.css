@@ -6,13 +6,22 @@ body {
     margin-left: auto;
     margin-right: auto;
     font-family: 'Roboto', sans-serif;
+    color: #082213;
     width: 60%;
+    background-image: url("images/Golf\ Course1.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .heading {
     margin-top: 100px;
     height: 100px;
     border: solid 5px black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: slategrey;
 }
 
 h1 {
@@ -22,17 +31,25 @@ h1 {
 
 main {
     text-align: center;
-    border: solid grey 2px;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 main p {
     padding: 25px;
 }
 
-button {
+.start {
     color: white;
     background-color: rgb(40, 39, 41);
     margin-top: 20px;
+}
+
+.go, .submit {
+    float: right;
+    background-color: springgreen;
+    margin: 15px;
 }
 
 fieldset {
@@ -45,6 +62,45 @@ fieldset {
     margin: 20px auto 0 auto;
 }
 
-label {
-    display: inline-block;
+.head-logo {
+    height: 45px;
+    padding-left: 15px;
+}
+
+.select-answer {
+    display: none;
+}
+
+.option {
+    padding: 2px 25px;
+    background-color: rgb(87, 87, 104);
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.selected {
+    background-color: rgb(122, 128, 128);
+}
+
+.not-visible {
+    display: none;
+}
+
+form {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.correct-answer {
+    background-color: green;
+}
+
+.incorrect-answer {
+    background-color: red;
+}
+
+.scoreboard {
+    background-color: black;
+    color: white;
+    padding: 10px;
 }

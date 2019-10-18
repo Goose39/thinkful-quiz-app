@@ -8,19 +8,26 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
   </head>
   <body>
-    <header>
-      <div class="heading">
-        <h1>Rules of Golf Quiz</h1>
-      </div>
-    </header>
     <main role="main">
-      <p>Welcome to Rules of Golf Quiz.</p>
-      <p>Click start to begin quiz</p>
-      <form class="quiz-form" action="/thinkful-quiz-app/question-wireframe.html">
-        <fieldset>
-            <button submit="button">START</button>
-        </fieldset>
-      </form>
+      <header>
+          <div class="heading">
+            <h1>Rules of Golf Quiz</h1>
+            <img class="head-logo" src="images/swing.svg">
+          </div>
+      </header>
+      <section>
+        <p>Welcome to Rules of Golf Quiz.</p>
+        <p>Click start to begin quiz</p>
+        <form class="quiz-form" action="#">
+          <fieldset>
+              <input class="start" type="button" value="START"/>
+              <input class="go not-visible" type="button" value="Next Q >>>"/>
+          </fieldset>
+        </form>
+      </section>
     </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="store.js"></script>
+    <script src="index.js"></script>
   </body>
 </html>
