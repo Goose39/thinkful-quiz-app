@@ -3,53 +3,61 @@
 }
 
 body {
-    margin-left: auto;
-    margin-right: auto;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Righteous', cursive;
     color: #082213;
-    width: 60%;
+    max-width: 650px;
     background-image: url("images/Golf\ Course1.svg");
     background-repeat: no-repeat;
     background-size: cover;
+    margin-right: auto;
+    margin-left: auto;
 }
 
+
+
 .heading {
+    color: #FFFFFF;
     margin-top: 100px;
     height: 100px;
-    border: solid 5px black;
+    border: solid 5px #ffcf79;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: slategrey;
+    background-color: #246c37;
 }
 
 h1 {
-    font-size: 32px;
+    font-size: 45px;
     text-align: center;
+    font-weight: lighter;
 }
 
 main {
     text-align: center;
-    max-width: 650px;
-    margin-left: auto;
-    margin-right: auto;
+    background:  linear-gradient(
+        rgba(29, 46, 27, 0.726), 
+        rgba(124, 122, 122, 0.849)
+      );
 }
 
 main p {
+    font-size: 20px;
     padding: 25px;
+    color: white;
+    margin: 0px;
 }
 
-.start {
+.start, .go, .submit {
     color: white;
-    background-color: rgb(40, 39, 41);
-    margin-top: 20px;
+    background-color: #246c37;
+    margin: 15px;
+    padding: 10px;
+    font-family: 'Righteous', cursive;
 }
 
 .go, .submit {
-    float: right;
-    background-color: springgreen;
-    margin: 15px;
+float: right;
 }
 
 fieldset {
@@ -67,19 +75,24 @@ fieldset {
     padding-left: 15px;
 }
 
-.select-answer {
-    display: none;
+.options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .option {
     padding: 2px 25px;
-    background-color: rgb(87, 87, 104);
-    border-radius: 5px;
     margin-top: 10px;
+    text-align: left;
+    width: 350px;
+    display: block;
+    color: white;
+    background-color: #3a3b3b;
 }
 
 .selected {
-    background-color: rgb(122, 128, 128);
+    background-color: #44c1c3;
 }
 
 .not-visible {
@@ -89,18 +102,30 @@ fieldset {
 form {
     margin-left: auto;
     margin-right: auto;
+    margin-top: 0px;
 }
 
 .correct-answer {
-    background-color: green;
+    background-color: #246c37;
 }
 
 .incorrect-answer {
-    background-color: red;
+    background-color: #f05352;
 }
 
 .scoreboard {
-    background-color: black;
+    background-color: #3e8941;
     color: white;
     padding: 10px;
+    border: solid 5px #ffcf79;
+    border-top: hidden;
+}
+
+.feedback {
+    margin-top: 25px;
+    color: white;
+}
+
+.question {
+    text-align: left;
 }
