@@ -3,42 +3,48 @@ let score = 0;
 
 function handleQuiz() {
     quizStart();
-    checkForNextQ();
 }
 // Start quiz once START button has been clicked
 function quizStart() {
     $(".quiz-form").on("click", ".start", function() {
-        buildQForm();
-        displayNextQ();
+        buildQForm(); 
     })
+
+    $("section").on("click", ".go", function() {
+        checkForNextQ();
+    })
+
+    $("section").on("click", ".submit", function() {
+        checkAnswer();
+    })
+
+    selectAnswer();
 }
 // Handle next question
-function displayNextQ() {
-    displayQs();
-    selectAnswer();
-    checkAnswer();  
-}
+
 // Render initial form structure for Questions
 function buildQForm() {
+    let qIdx = currentQ - 1;
     let remQs = STORE.length - currentQ;
     $("section").html(`<div class="scoreboard">Current Score: ${score} | ${remQs} questions remaining</div>
-                        <p class="question"></p>
+                        <p class="question">${generateQuestion(qIdx)}</p>
                         <form class="quiz-form" action="#">
                             <fieldset>
-                                <div class="options"></div>
+                                <div class="options">${generateOptions(qIdx)}</div>
                                 <div class="feedback"></div>
-                                <input class="submit" type="button" value="Submit Answer"/> 
-                                <input class="go" type="button" value="Next Q >>>"/>
+                                <button class="submit" type="submit">Submit Answer</button> 
+                                <input class="go not-visible" type="button" value="Next Q >>>"/>
                             </fieldset>
                         </form>`)
 }
 // Insert HTML elements for each answer option
 function displayQs() {
-    let qOptions = "";
     let qIdx = currentQ - 1;
-    $(".question").html(`Q${currentQ}/${STORE.length}: ${STORE[qIdx].question}`);
-    STORE[qIdx].options.forEach(option => {qOptions += `<label for="${option}" class="option"><input class="select-answer" name="option" type="radio" value="${option}" id="${option}" required/>${option}</label>`});
-    $(".options").html(qOptions);
+
+    $(".question").html(`${generateQuestion(qIdx)}`)
+  
+    $(".options").html(`${generateOptions(qIdx)}`);
+
     $(".submit").removeClass("not-visible");
     $(".go").addClass("not-visible");
     $(".feedback").html("");
@@ -52,43 +58,51 @@ function selectAnswer() {
 }
 // Check if selected answer is correct
 function checkAnswer() {
-    $("section").on("click", ".submit", function() {
-        console.log(`---------Start CheckAnswer----------`);
         const qIdx = currentQ - 1;
         const correct = STORE[qIdx].answer;
         const answer = $("input[name=option]:checked").val();
         const selected = $(".selected");
 
-        console.log(`before if: ${answer}`);
+        if (!answer) {
+            return alert("Please select an answer before submitting");
+        }; 
         
         if (answer === correct) {
             selected.html(`${answer} | Correct!`).addClass("correct-answer");
             score++;
-            console.log(`if: ${answer}`);
         } else {
             selected.html(`${answer} | Incorrect!`).addClass("incorrect-answer");
             $(".feedback").html(`The correct answer is: ${STORE[qIdx].answer}`);
-            console.log(`else: ${answer}`);
         }  
             
         updateScoreboard();
         $(".select-answer").css("display", "none");    
         $(".submit").addClass("not-visible");
         $(".go").removeClass("not-visible");
-    })
-}
+    }
 
 function checkForNextQ() {
-    $("section").on("click", ".go", function(event) {
-        event.preventDefault();
-        currentQ++;
-        if (currentQ <= STORE.length) {
-        displayNextQ();
-        } else {
-            endQuiz();    
-        }
-    })
+    currentQ++;
+    if (currentQ <= STORE.length) {
+        displayQs();
+    } else {
+        endQuiz();    
+    }
 }
+
+function generateQuestion(index) {
+    return `Q${currentQ}/${STORE.length}: ${STORE[index].question}`;
+}
+
+function generateOptions(index) {
+    let options = "";
+
+    STORE[index].options.forEach(option => options += `<label for="${option}" class="option"><input class="select-answer" name="option" type="radio" value="${option}" id="${option}" required/>${option}</label>`);
+
+    return options;
+
+}
+
 // Change update Scoreboard values
 function updateScoreboard() {
     let remQs = STORE.length - currentQ;
@@ -99,7 +113,7 @@ function updateScoreboard() {
 function endQuiz() { 
     $("section").html(`
         <p>Congratulations you have completed the Quiz!</p>
-        <p>You managed to answer ${score}/${STORE.length} questions correctly</p>
+        <p>You managed to answer ${score}/${STORE.length} questions correctly.</p>
         <form class="quiz-form" action="#">
             <input class="start" type="button" value="Restart Quiz">
         </form>
