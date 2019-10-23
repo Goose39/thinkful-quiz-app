@@ -3,12 +3,11 @@ let score = 0;
 
 function handleQuiz() {
     quizStart();
-    checkForNextQ()
+    checkForNextQ();
 }
 // Start quiz once START button has been clicked
 function quizStart() {
-    $("section").on("click", ".start", function(event) {
-        event.preventDefault();
+    $(".quiz-form").on("click", ".start", function() {
         buildQForm();
         displayNextQ();
     })
@@ -16,11 +15,8 @@ function quizStart() {
 // Handle next question
 function displayNextQ() {
     displayQs();
-    // Handle Answer selection
     selectAnswer();
-    // Listen for answer submition and check if correct
-    checkAnswer();
-    // Listen for click to go to next Question   
+    checkAnswer();  
 }
 // Render initial form structure for Questions
 function buildQForm() {
@@ -57,30 +53,34 @@ function selectAnswer() {
 // Check if selected answer is correct
 function checkAnswer() {
     $("section").on("click", ".submit", function() {
+        console.log(`---------Start CheckAnswer----------`);
         const qIdx = currentQ - 1;
         const correct = STORE[qIdx].answer;
         const answer = $("input[name=option]:checked").val();
         const selected = $(".selected");
+
+        console.log(`before if: ${answer}`);
         
-        if (answer == correct) {
+        if (answer === correct) {
             selected.html(`${answer} | Correct!`).addClass("correct-answer");
             score++;
-            console.log(`${answer}`);
+            console.log(`if: ${answer}`);
         } else {
             selected.html(`${answer} | Incorrect!`).addClass("incorrect-answer");
-            $(".feedback").html(`The correct answer is ${STORE[qIdx].answer}`);
-            console.log(`${answer}`);
+            $(".feedback").html(`The correct answer is: ${STORE[qIdx].answer}`);
+            console.log(`else: ${answer}`);
         }  
             
-        updateScoreboard();    
-        $(".select-answer").css("display", "none");
+        updateScoreboard();
+        $(".select-answer").css("display", "none");    
         $(".submit").addClass("not-visible");
         $(".go").removeClass("not-visible");
     })
 }
 
 function checkForNextQ() {
-    $("section").on("click", ".go", function() {
+    $("section").on("click", ".go", function(event) {
+        event.preventDefault();
         currentQ++;
         if (currentQ <= STORE.length) {
         displayNextQ();
@@ -93,6 +93,7 @@ function checkForNextQ() {
 function updateScoreboard() {
     let remQs = STORE.length - currentQ;
     $(".scoreboard").html(`Current Score: ${score} | ${remQs} questions remaining`);
+    console.log("scoreboard updated");
 }
 // Display that quiz has ended and user results, with option to restart
 function endQuiz() { 

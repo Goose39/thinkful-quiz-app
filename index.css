@@ -4,21 +4,22 @@
 
 body {
     font-family: 'Righteous', cursive;
-    color: #082213;
-    max-width: 650px;
     background-image: url("images/Golf\ Course1.svg");
+    background-color: #fffbca;
     background-repeat: no-repeat;
     background-size: cover;
     margin-right: auto;
     margin-left: auto;
+    padding: 25px;
+    max-width: 750px;
 }
 
 
 
 .heading {
     color: #FFFFFF;
-    margin-top: 100px;
-    height: 100px;
+    margin-top: 65px;
+    height: 80px;
     border: solid 5px #ffcf79;
     display: flex;
     flex-direction: row;
@@ -71,7 +72,7 @@ fieldset {
 }
 
 .head-logo {
-    height: 45px;
+    height: 55px;
     padding-left: 15px;
 }
 
@@ -85,7 +86,7 @@ fieldset {
     padding: 2px 25px;
     margin-top: 10px;
     text-align: left;
-    width: 350px;
+    width: 80%;
     display: block;
     color: white;
     background-color: #3a3b3b;
@@ -129,3 +130,30 @@ form {
 .question {
     text-align: left;
 }
+
+@media screen and (max-width: 500px) {
+    h1 {
+        font-size: 25px;
+    }
+
+    .heading {
+       height: 50px;
+       margin-top: 0px;
+    }
+
+    main {
+        width: 100%;
+    }
+
+    main p {
+        font-size: 16px;
+        font-weight: 100;
+    }
+
+    .head-logo {
+        height: 35px;
+        padding-left: 10px;
+    }
+
+}
+
