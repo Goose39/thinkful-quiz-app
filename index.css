@@ -42,14 +42,14 @@ main {
       );
 }
 
-main p {
+main p, legend {
     font-size: 20px;
     padding: 25px;
     color: white;
     margin: 0px;
 }
 
-.start, .go, .submit {
+.start, .go, .submit, .restart {
     color: white;
     background-color: #246c37;
     margin: 15px;

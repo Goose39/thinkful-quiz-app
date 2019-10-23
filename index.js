@@ -6,8 +6,9 @@ function handleQuiz() {
 }
 // Start quiz once START button has been clicked
 function quizStart() {
+
     $(".quiz-form").on("click", ".start", function() {
-        buildQForm(); 
+        quizRestart()  
     })
 
     $("section").on("click", ".go", function() {
@@ -27,9 +28,9 @@ function buildQForm() {
     let qIdx = currentQ - 1;
     let remQs = STORE.length - currentQ;
     $("section").html(`<div class="scoreboard">Current Score: ${score} | ${remQs} questions remaining</div>
-                        <p class="question">${generateQuestion(qIdx)}</p>
                         <form class="quiz-form" action="#">
                             <fieldset>
+                                <legend class="question">${generateQuestion(qIdx)}</legend>
                                 <div class="options">${generateOptions(qIdx)}</div>
                                 <div class="feedback"></div>
                                 <button class="submit" type="submit">Submit Answer</button> 
@@ -107,24 +108,31 @@ function generateOptions(index) {
 function updateScoreboard() {
     let remQs = STORE.length - currentQ;
     $(".scoreboard").html(`Current Score: ${score} | ${remQs} questions remaining`);
-    console.log("scoreboard updated");
 }
 // Display that quiz has ended and user results, with option to restart
 function endQuiz() { 
-    $("section").html(`
-        <p>Congratulations you have completed the Quiz!</p>
-        <p>You managed to answer ${score}/${STORE.length} questions correctly.</p>
-        <form class="quiz-form" action="#">
-            <input class="start" type="button" value="Restart Quiz">
-        </form>
-        `)   
-    quizRestart();
+
+    $(".quiz-form").addClass("not-visible")
+
+    $("section").append(`
+        <div class="end-quiz"> 
+            <p>Congratulations you have completed the Quiz!</p>
+            <p>You managed to answer ${score}/${STORE.length} questions correctly.</p>
+            <input class="restart" type="button" value="Restart Quiz">
+        </div>`)
+
+        $(".end-quiz").on("click", ".restart", function() {
+            quizRestart()  
+        })
+
+        
 }
 // Reset Question counters to restart quiz from Q1 
 function quizRestart() {
     currentQ = 1;
     score = 0;
-    quizStart();
+
+    buildQForm(); 
 }
 
 $(handleQuiz);
